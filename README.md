@@ -1,7 +1,7 @@
 # DXC Group Inc — OmniFlow AI
 
 > **Autonomous Multimodal Agent Infrastructure for Enterprise Operations**  
-> Powered by **Anthropic Claude 3.5 Sonnet**, **Computer Use**, and the **Model Context Protocol (MCP)**.
+> Powered by **Anthropic Claude 5.5 Sonnet**, **Computer Use**, and the **Model Context Protocol (MCP)**.
 
 [![Cloudflare Pages](https://img.shields.io/badge/Deployed%20with-Cloudflare%20Pages-f38020.svg)](https://dxcgroupinc.com)
 [![Model](https://img.shields.io/badge/Powered%20By-Anthropic%20Claude-d97757.svg)](https://claude.com)
@@ -11,7 +11,7 @@
 
 ## Overview
 
-DXC Group Inc develops frontier agent orchestration systems designed to bridge multimodal cognitive reasoning with real-world enterprise action. By leveraging Claude 3.5 Sonnet's 200,000-token context window, advanced visual reasoning, and native tool execution, OmniFlow enables deterministic automation across legacy desktop UIs, ERP databases, and distributed infrastructure.
+DXC Group Inc develops frontier agent orchestration systems designed to bridge multimodal cognitive reasoning with real-world enterprise action. By leveraging Claude 5.5 Sonnet's 200,000-token context window, advanced visual reasoning, and native tool execution, OmniFlow enables deterministic automation across legacy desktop UIs, ERP databases, and distributed infrastructure.
 
 ## Key Capabilities
 
