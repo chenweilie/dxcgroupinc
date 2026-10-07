@@ -1,0 +1,19 @@
+{
+  "name": "dxcgroupinc-website",
+  "version": "1.0.0",
+  "description": "DXC Group Inc - Autonomous Enterprise Multimodal Agent Infrastructure",
+  "scripts": {
+    "build": "echo 'Static assets ready in root' && exit 0",
+    "deploy": "cf pages deploy ."
+  },
+  "keywords": [
+    "anthropic",
+    "claude",
+    "startup",
+    "agentic-ai",
+    "mcp",
+    "computer-use"
+  ],
+  "author": "William Chen <william@dxcgroupinc.com>",
+  "license": "UNLICENSED"
+}

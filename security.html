@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Whitepaper &amp; Governance | DXC Group Inc</title>
+  <meta name="description" content="Security architecture, zero data retention, and compliance standards for DXC Group Inc.">
+  <link rel="canonical" href="https://dxcgroupinc.com/security.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #07090e; color: #cbd5e1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  </style>
+</head>
+<body class="py-16 px-6 max-w-4xl mx-auto">
+  <div class="mb-10">
+    <a href="/" class="text-sm text-orange-400 hover:underline">← Back to DXC Group Inc</a>
+    <h1 class="text-3xl font-bold text-white mt-4">Security Whitepaper &amp; Governance</h1>
+    <p class="text-xs text-slate-500 mt-1">DXC Group Inc Enterprise Security Architecture v2.4</p>
+  </div>
+
+  <div class="space-y-8 text-sm leading-relaxed text-slate-300">
+    <section>
+      <h2 class="text-lg font-semibold text-white mb-2">1. Frontier LLM Isolation &amp; Anthropic Commercial Terms</h2>
+      <p>DXC Group's OmniFlow platform connects directly to Anthropic's enterprise endpoints under commercial terms that strictly enforce zero data retention. Your confidential data, financial figures, schemas, and user interfaces are never stored for foundation model training.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-white mb-2">2. Model Context Protocol (MCP) Access Controls</h2>
+      <p>Tool calls to production databases (PostgreSQL, ClickHouse, Snowflake) and enterprise software (Salesforce, SAP, Workday) operate via fine-grained MCP role-based permissions. Every execution step is verified against pre-defined capability scopes before issuance.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-white mb-2">3. Deterministic Guardrails &amp; Human-in-the-Loop</h2>
+      <p>Autonomous agents operate within strict confidence boundaries. When an action has irreversible consequences (e.g. monetary transfers or database mutations), OmniFlow automatically triggers a Human-in-the-Loop verification checkpoint with full context justification.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-white mb-2">4. Cryptographic Audit Trail</h2>
+      <p>Every decision step, visual screenshot delta, and tool response is hashed into an immutable audit trail, providing complete compliance defensibility for regulatory reviews and internal audits.</p>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold text-white mb-2">5. Security Contact &amp; Responsible Disclosure</h2>
+      <p>To report vulnerabilities or request enterprise compliance documentation, please email:</p>
+      <div class="mt-2 p-4 rounded-lg bg-slate-900 border border-slate-800 text-xs">
+        <p><strong>DXC Group Inc Security Team</strong></p>
+        <p>Email: <a href="mailto:william@dxcgroupinc.com" class="text-orange-400 hover:underline">william@dxcgroupinc.com</a></p>
+        <p>Phone: +1 (626) 362-3608</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

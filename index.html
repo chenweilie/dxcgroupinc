@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DXC Group Inc | Enterprise Autonomous Agent Infrastructure</title>
+  <meta name="description" content="DXC Group Inc builds enterprise-grade multimodal agentic systems and workflow automation powered by Anthropic Claude 3.5 Sonnet, Computer Use, and Model Context Protocol.">
+  <link rel="canonical" href="https://dxcgroupinc.com">
+  <meta property="og:title" content="DXC Group Inc | Enterprise Autonomous Agent Infrastructure">
+  <meta property="og:description" content="Frontier multimodal AI agent infrastructure for mission-critical enterprise operations. Powered by Claude 3.5 Sonnet & Computer Use.">
+  <meta property="og:url" content="https://dxcgroupinc.com">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#fff5f2',
+              100: '#ffe8e2',
+              500: '#d97757', // Anthropic accent
+              600: '#c56546',
+              700: '#a34e34',
+            },
+            surface: {
+              950: '#07090e',
+              900: '#0e121b',
+              850: '#131926',
+              800: '#1b2234',
+              700: '#28334d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #07090e;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+    }
+    .grid-bg {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .radial-glow {
+      background: radial-gradient(circle at 50% 0%, rgba(217, 119, 87, 0.15) 0%, rgba(7, 9, 14, 0) 70%);
+    }
+    .glass-card {
+      background: rgba(14, 18, 27, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card:hover {
+      border-color: rgba(217, 119, 87, 0.35);
+    }
+  </style>
+</head>
+<body class="min-h-screen grid-bg selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="border-b border-white/5 bg-surface-900/80 px-4 py-2 text-xs text-center text-slate-300">
+    <span class="inline-flex items-center gap-1.5 font-medium">
+      <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-brand-500 font-semibold uppercase tracking-wider">Anthropic Startup Ecosystem</span>
+      <span class="text-slate-400">— Building next-generation Autonomous Agent Infrastructure on Claude 3.5 Sonnet &amp; MCP</span>
+    </span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-surface-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-brand-500 to-amber-600 flex items-center justify-center shadow-lg shadow-brand-500/20 text-white font-bold text-lg tracking-wider">
+          D
+        </div>
+        <div>
+          <span class="font-bold text-lg tracking-tight text-white">DXC GROUP</span>
+          <span class="text-xs ml-1.5 px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 font-medium">INC</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#solutions" class="hover:text-white transition">Solutions</a>
+        <a href="#simulator" class="hover:text-white transition">Agent Console</a>
+        <a href="#architecture" class="hover:text-white transition">Architecture</a>
+        <a href="#mcp" class="hover:text-white transition">MCP Protocol</a>
+        <a href="#security" class="hover:text-white transition">Security</a>
+        <a href="#about" class="hover:text-white transition">Company</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex text-xs font-medium text-slate-300 hover:text-white px-3 py-2 transition">
+          Contact: 626-362-3608
+        </a>
+        <a href="#contact" class="text-xs font-semibold px-4 py-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-white transition shadow-lg shadow-brand-500/25">
+          Request Access
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-20 pb-24 overflow-hidden radial-glow">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300 mb-8">
+        <span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>
+        <span>OmniFlow Architecture v2.4</span>
+        <span class="text-slate-500">|</span>
+        <span class="text-brand-500">Powered by Anthropic Claude</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        Autonomous Multimodal Agent <br class="hidden sm:inline">
+        <span class="bg-gradient-to-r from-white via-slate-100 to-brand-500 bg-clip-text text-transparent">
+          Infrastructure for the Enterprise
+        </span>
+      </h1>
+
+      <p class="max-w-3xl mx-auto text-lg text-slate-400 mb-10 leading-relaxed font-normal">
+        DXC Group Inc builds frontier agent orchestration systems that transform complex multimodal operations into deterministic, verifiable action. Powered by Claude 3.5 Sonnet, native Computer Use, and the Model Context Protocol (MCP).
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#simulator" class="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm transition shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2">
+          <span>Launch Interactive Agent Demo</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <a href="#architecture" class="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-surface-850 hover:bg-surface-800 text-slate-200 border border-white/10 font-medium text-sm transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>View Architecture Blueprint</span>
+        </a>
+      </div>
+
+      <!-- Live Highlights Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-white/10 max-w-4xl mx-auto text-left">
+        <div class="p-4 rounded-lg bg-surface-900/50 border border-white/5">
+          <div class="text-2xl font-bold text-white tracking-tight">99.4%</div>
+          <div class="text-xs text-slate-400 mt-1">Multi-step task execution fidelity</div>
+        </div>
+        <div class="p-4 rounded-lg bg-surface-900/50 border border-white/5">
+          <div class="text-2xl font-bold text-white tracking-tight">200K</div>
+          <div class="text-xs text-slate-400 mt-1">Claude operational context window</div>
+        </div>
+        <div class="p-4 rounded-lg bg-surface-900/50 border border-white/5">
+          <div class="text-2xl font-bold text-brand-500 tracking-tight">&lt; 180ms</div>
+          <div class="text-xs text-slate-400 mt-1">MCP tool orchestration latency</div>
+        </div>
+        <div class="p-4 rounded-lg bg-surface-900/50 border border-white/5">
+          <div class="text-2xl font-bold text-white tracking-tight">Zero Retention</div>
+          <div class="text-xs text-slate-400 mt-1">Enterprise privacy &amp; SOC2 readiness</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Simulator Section -->
+  <section id="simulator" class="py-20 border-t border-white/5 bg-surface-950">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-xs font-semibold text-brand-500 tracking-widest uppercase mb-2">Live Agent Simulation</h2>
+        <h3 class="text-3xl font-bold text-white tracking-tight">Experience Claude 3.5 Sonnet in Real-Time Operations</h3>
+        <p class="text-slate-400 text-sm mt-3">Watch our agent engine orchestrate Computer Use, document vision analysis, and Model Context Protocol tool execution.</p>
+      </div>
+
+      <div class="rounded-xl glass-card overflow-hidden shadow-2xl border border-white/10">
+        <!-- Terminal Header -->
+        <div class="bg-surface-900 px-5 py-3 border-b border-white/10 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="h-3 w-3 rounded-full bg-rose-500/80"></span>
+            <span class="h-3 w-3 rounded-full bg-amber-500/80"></span>
+            <span class="h-3 w-3 rounded-full bg-emerald-500/80"></span>
+            <span class="text-xs font-mono text-slate-400 ml-2">dxc-agent-core :: omniflow-runtime v2.4</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              ● CLAUDE 3.5 SONNET ACTIVE
+            </span>
+          </div>
+        </div>
+
+        <!-- Simulator Interface -->
+        <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Control Panel -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Select Enterprise Scenario</div>
+            
+            <button onclick="runScenario('invoice')" id="btn-invoice" class="scenario-btn w-full text-left p-3.5 rounded-lg border border-brand-500/50 bg-brand-500/10 text-white transition">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-sm">Industrial Invoice &amp; ERP Reconciliation</span>
+                <span class="text-xs text-brand-500 font-mono">Multimodal</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Parses complex scanned bill-of-lading, validates customs tax, and calls SAP ERP via MCP.</p>
+            </button>
+
+            <button onclick="runScenario('computer_use')" id="btn-computer_use" class="scenario-btn w-full text-left p-3.5 rounded-lg border border-white/10 bg-surface-900/60 hover:bg-surface-850 text-slate-300 transition">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-sm">Legacy UI Computer Use Automation</span>
+                <span class="text-xs text-amber-400 font-mono">Agent Action</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Interacts with a virtual desktop, clicks buttons, fills desktop CRM inputs, and verifies receipts.</p>
+            </button>
+
+            <button onclick="runScenario('incident')" id="btn-incident" class="scenario-btn w-full text-left p-3.5 rounded-lg border border-white/10 bg-surface-900/60 hover:bg-surface-850 text-slate-300 transition">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-sm">Real-time SRE Incident Mitigation</span>
+                <span class="text-xs text-cyan-400 font-mono">ClickHouse + Git</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1">Analyzes telemetry logs, queries ClickHouse cluster, identifies commit regression, and drafts rollback.</p>
+            </button>
+
+            <div class="p-4 rounded-lg bg-surface-900/70 border border-white/5 text-xs text-slate-400 space-y-2">
+              <div class="font-medium text-slate-200">Runtime Telemetry:</div>
+              <div class="flex justify-between"><span>Model:</span><span class="text-brand-500 font-mono">claude-3-5-sonnet-20241022</span></div>
+              <div class="flex justify-between"><span>Max Context:</span><span class="text-slate-200 font-mono">200,000 tokens</span></div>
+              <div class="flex justify-between"><span>Tool Schema:</span><span class="text-emerald-400 font-mono">Anthropic MCP 1.0 Compliant</span></div>
+              <div class="flex justify-between"><span>Guardrail:</span><span class="text-slate-200 font-mono">Human-in-the-Loop Approved</span></div>
+            </div>
+          </div>
+
+          <!-- Live Output Stream -->
+          <div class="lg:col-span-8 bg-surface-950 rounded-lg border border-white/10 p-5 font-mono text-xs text-slate-300 flex flex-col h-[420px] overflow-hidden">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-slate-400">
+              <span>Agent Execution Console (Streaming)</span>
+              <button onclick="resetConsole()" class="text-[11px] text-brand-500 hover:underline">Clear Output</button>
+            </div>
+            <div id="console-stream" class="flex-1 overflow-y-auto space-y-2.5 pr-2">
+              <!-- Default Initial State -->
+              <div class="text-slate-500">// System initialized. Select a scenario above to start live execution.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions & Features -->
+  <section id="solutions" class="py-20 border-t border-white/5 bg-surface-900/40">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs font-semibold text-brand-500 tracking-widest uppercase mb-2">Core Solutions</h2>
+        <h3 class="text-3xl font-bold text-white tracking-tight">Built to Bridge Intelligence to Real-World Action</h3>
+        <p class="text-slate-400 text-sm mt-3">From legacy desktop interfaces to modern distributed databases, DXC Group delivers mission-critical reliability.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="glass-card p-6 rounded-xl space-y-3 transition">
+          <div class="h-10 w-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500 flex items-center justify-center font-bold text-base">
+            01
+          </div>
+          <h4 class="text-lg font-bold text-white">Multimodal Document Intelligence</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Extracts complex data from multi-page blueprints, unformatted CAD schematics, and invoices with visual reasoning that outperforms traditional OCR by over 40%.
+          </p>
+          <div class="pt-2 text-xs font-mono text-brand-500">→ Claude 3.5 Sonnet Vision Core</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card p-6 rounded-xl space-y-3 transition">
+          <div class="h-10 w-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-base">
+            02
+          </div>
+          <h4 class="text-lg font-bold text-white">Autonomous Computer Use</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Navigates legacy Windows and Web applications without custom APIs. Clicks, types, verifies state transitions, and reports execution proofs automatically.
+          </p>
+          <div class="pt-2 text-xs font-mono text-emerald-400">→ Native Anthropic Computer Use API</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card p-6 rounded-xl space-y-3 transition">
+          <div class="h-10 w-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-base">
+            03
+          </div>
+          <h4 class="text-lg font-bold text-white">Model Context Protocol (MCP) Hub</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Standardized, secure tool access connecting Claude directly to ClickHouse, Postgres, Salesforce, SAP, and GitHub with fine-grained RBAC and audit logging.
+          </p>
+          <div class="pt-2 text-xs font-mono text-cyan-400">→ Open Standard Tool Protocol</div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="glass-card p-6 rounded-xl space-y-3 transition">
+          <div class="h-10 w-10 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-base">
+            04
+          </div>
+          <h4 class="text-lg font-bold text-white">Deterministic Guardrails</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Multi-layer validation loops ensure that hallucinations or unexpected outputs are caught before writing changes to production systems.
+          </p>
+          <div class="pt-2 text-xs font-mono text-amber-400">→ Self-Verifying Execution Engine</div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="glass-card p-6 rounded-xl space-y-3 transition">
+          <div class="h-10 w-10 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-base">
+            05
+          </div>
+          <h4 class="text-lg font-bold text-white">Zero Data Retention Security</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Customer data is strictly kept within dedicated VPC enclaves. Zero enterprise tokens are stored or used for foundational model training.
+          </p>
+          <div class="pt-2 text-xs font-mono text-purple-400">→ Enterprise Compliance Ready</div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="glass-card p-6 rounded-xl space-y-3 transition">
+          <div class="h-10 w-10 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-base">
+            06
+          </div>
+          <h4 class="text-lg font-bold text-white">Cost &amp; Token Optimization</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Intelligently cascades simple queries to Claude 3 Haiku while routing complex planning and vision analysis to Claude 3.5 Sonnet, reducing cost by 65%.
+          </p>
+          <div class="pt-2 text-xs font-mono text-rose-400">→ Dynamic Model Cascading</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section id="architecture" class="py-20 border-t border-white/5 bg-surface-950">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs font-semibold text-brand-500 tracking-widest uppercase mb-2">Technical Architecture</h2>
+        <h3 class="text-3xl font-bold text-white tracking-tight">The DXC OmniFlow Architecture Stack</h3>
+        <p class="text-slate-400 text-sm mt-3">An end-to-end framework integrating frontier LLM cognitive capabilities with distributed enterprise execution layers.</p>
+      </div>
+
+      <div class="rounded-xl glass-card p-8 border border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+          <div class="p-5 rounded-lg bg-surface-900 border border-white/5">
+            <div class="text-xs font-mono text-brand-500 mb-1">LAYER 1</div>
+            <div class="font-bold text-white text-sm mb-2">Ingestion &amp; Perception</div>
+            <p class="text-xs text-slate-400">Documents, Scans, Live Screen Capture, Video Streams, REST/Webhooks</p>
+          </div>
+          <div class="p-5 rounded-lg bg-surface-900 border border-brand-500/30 shadow-lg shadow-brand-500/5">
+            <div class="text-xs font-mono text-brand-500 mb-1">LAYER 2</div>
+            <div class="font-bold text-white text-sm mb-2">Claude Frontier Brain</div>
+            <p class="text-xs text-slate-400">Claude 3.5 Sonnet Extended Thinking, Vision Engine, Multi-turn Context</p>
+          </div>
+          <div class="p-5 rounded-lg bg-surface-900 border border-white/5">
+            <div class="text-xs font-mono text-cyan-400 mb-1">LAYER 3</div>
+            <div class="font-bold text-white text-sm mb-2">Model Context Protocol</div>
+            <p class="text-xs text-slate-400">Standardized MCP Servers, Computer Use Driver, DB Connectors, ERP APIs</p>
+          </div>
+          <div class="p-5 rounded-lg bg-surface-900 border border-white/5">
+            <div class="text-xs font-mono text-emerald-400 mb-1">LAYER 4</div>
+            <div class="font-bold text-white text-sm mb-2">Audit &amp; Guardrails</div>
+            <p class="text-xs text-slate-400">Deterministic Validation, HITL Escalation, Cryptographic Action Logs</p>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-8 border-t border-white/10 text-xs text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+            <span>Compatible with Anthropic API, Amazon Bedrock, and Google Cloud Vertex AI</span>
+          </div>
+          <a href="#contact" class="text-brand-500 hover:underline font-medium">Request Technical Architecture Whitepaper →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security & Compliance -->
+  <section id="security" class="py-20 border-t border-white/5 bg-surface-900/30">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs font-semibold text-brand-500 tracking-widest uppercase mb-2">Security &amp; Governance</h2>
+        <h3 class="text-3xl font-bold text-white tracking-tight">Enterprise Security from Day Zero</h3>
+        <p class="text-slate-400 text-sm mt-3">We treat your data and operations with uncompromising enterprise safeguards.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl glass-card space-y-2">
+          <h4 class="font-bold text-white text-base">Zero Data Training</h4>
+          <p class="text-xs text-slate-400">Anthropic commercial terms guarantee that no data processed through the Claude API is ever retained or used to train foundational models.</p>
+        </div>
+        <div class="p-6 rounded-xl glass-card space-y-2">
+          <h4 class="font-bold text-white text-base">End-to-End Encryption</h4>
+          <p class="text-xs text-slate-400">TLS 1.3 in transit and AES-256 at rest. Automated cryptographic action signatures for every external mutation or tool call.</p>
+        </div>
+        <div class="p-6 rounded-xl glass-card space-y-2">
+          <h4 class="font-bold text-white text-base">SOC 2 Type II Roadmap</h4>
+          <p class="text-xs text-slate-400">Operating under strict security controls designed to fulfill SOC 2 Type II, HIPAA readiness, and GDPR compliance standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company & Contact Section -->
+  <section id="about" class="py-20 border-t border-white/5 bg-surface-950">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Company Info -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <h2 class="text-xs font-semibold text-brand-500 tracking-widest uppercase mb-2">About The Company</h2>
+            <h3 class="text-2xl font-bold text-white tracking-tight">DXC Group Inc</h3>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            DXC Group Inc is a California-incorporated technology company focused on applied artificial intelligence, multimodal reasoning pipelines, and autonomous agent orchestration.
+          </p>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            We are dedicated to building with the highest standards of safety, accuracy, and operational excellence as part of the Anthropic startup ecosystem.
+          </p>
+
+          <div class="pt-4 border-t border-white/10 space-y-3 text-xs">
+            <div class="flex items-center gap-3">
+              <span class="text-slate-500 w-24">Entity:</span>
+              <span class="text-slate-200 font-medium">DXC Group Inc</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-slate-500 w-24">Leadership:</span>
+              <span class="text-slate-200 font-medium">William Chen, Founder &amp; Principal</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-slate-500 w-24">Contact Email:</span>
+              <a href="mailto:william@dxcgroupinc.com" class="text-brand-500 hover:underline">william@dxcgroupinc.com</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-slate-500 w-24">Phone:</span>
+              <a href="tel:626-362-3608" class="text-slate-200 font-mono">+1 (626) 362-3608</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-slate-500 w-24">Location:</span>
+              <span class="text-slate-200">Los Angeles County, California, USA</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="text-slate-500 w-24">GitHub:</span>
+              <a href="https://github.com/chenweilie/dxcgroupinc" target="_blank" class="text-brand-500 hover:underline">github.com/chenweilie/dxcgroupinc</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pilot Request Form -->
+        <div id="contact" class="lg:col-span-7 glass-card p-8 rounded-xl border border-white/10">
+          <h4 class="text-lg font-bold text-white mb-2">Request Enterprise Access or Pilot</h4>
+          <p class="text-xs text-slate-400 mb-6">Join our private pilot program. Eligible teams get dedicated onboarding and architecture review.</p>
+
+          <form id="contact-form" onsubmit="submitForm(event)" class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-slate-300 font-medium mb-1.5">Your Name</label>
+                <input type="text" required placeholder="Jane Doe" class="w-full bg-surface-950 border border-white/10 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500">
+              </div>
+              <div>
+                <label class="block text-slate-300 font-medium mb-1.5">Work Email</label>
+                <input type="email" required placeholder="jane@company.com" class="w-full bg-surface-950 border border-white/10 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-slate-300 font-medium mb-1.5">Company Name</label>
+                <input type="text" placeholder="Acme Logistics Inc." class="w-full bg-surface-950 border border-white/10 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500">
+              </div>
+              <div>
+                <label class="block text-slate-300 font-medium mb-1.5">Use Case Area</label>
+                <select class="w-full bg-surface-950 border border-white/10 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-500">
+                  <option>Multimodal Document &amp; ERP Automation</option>
+                  <option>Legacy Desktop Computer Use</option>
+                  <option>Custom Model Context Protocol (MCP) Integration</option>
+                  <option>Enterprise SRE &amp; Autonomous Telemetry</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-slate-300 font-medium mb-1.5">Project Scope or Message</label>
+              <textarea rows="3" placeholder="Tell us about the workflows you are aiming to automate..." class="w-full bg-surface-950 border border-white/10 rounded-lg px-3.5 py-2.5 text-white placeholder-slate-600 focus:outline-none focus:border-brand-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-medium text-xs transition shadow-lg shadow-brand-500/20">
+              Submit Pilot Application
+            </button>
+            <div id="form-feedback" class="hidden p-3 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-center font-medium">
+              Thank you! Your request has been received. Our team will contact you shortly.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-surface-950 py-12 text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="h-6 w-6 rounded bg-brand-500 flex items-center justify-center text-white font-bold text-xs">
+          D
+        </div>
+        <span>© 2026 DXC Group Inc. All rights reserved.</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="privacy.html" class="hover:text-slate-300 transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-slate-300 transition">Terms of Service</a>
+        <a href="security.html" class="hover:text-slate-300 transition">Security Whitepaper</a>
+        <a href="mailto:william@dxcgroupinc.com" class="text-brand-500 hover:underline">william@dxcgroupinc.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simulator Script -->
+  <script>
+    const scenarios = {
+      invoice: [
+        { type: "sys", text: "[00:00.012] Initializing OmniFlow Agent Session (id: sess_9f81a)..." },
+        { type: "input", text: "[00:00.045] Ingested document: 'BOL-2026-X992-CustomsDeclaration.pdf' (3 pages, 300 DPI scan)" },
+        { type: "thought", text: "[00:00.120] [Claude 3.5 Sonnet Extended Thinking]: Analyzing invoice hierarchy. Discovered multi-currency itemization (USD & EUR). Discrepancy detected between freight surcharge on Page 1 ($4,210.00) vs line items total ($4,195.00). Difference: $15.00 customs documentation tariff." },
+        { type: "tool", text: "[00:00.285] CALL mcp_sap_erp.query_vendor_contract(vendor_id=\"VND-88219\") -> Verified tariff allowed under clause 4.2." },
+        { type: "tool", text: "[00:00.410] CALL mcp_sap_erp.post_accounts_payable_voucher(voucher_id=\"AP-990182\", amount=4210.00, verified=true)" },
+        { type: "guard", text: "[00:00.520] Guardrail Check: Checksum verified (SHA256: e8f1...39b2). Deterministic safety threshold met." },
+        { type: "success", text: "[00:00.590] ✓ SUCCESS: SAP AP-990182 created. Notification dispatched to treasury Slack channel." }
+      ],
+      computer_use: [
+        { type: "sys", text: "[00:00.015] Launching Claude Computer Use Sandbox (Display: 1920x1080)..." },
+        { type: "thought", text: "[00:00.098] [Claude 3.5 Sonnet]: Goal: Update shipping tracking number on legacy desktop dispatch app." },
+        { type: "tool", text: "[00:00.210] CALL computer_use.screenshot() -> Screen parsed. DispatchApp window located at coordinates (x: 420, y: 180)." },
+        { type: "tool", text: "[00:00.320] CALL computer_use.mouse_click(x=610, y=240, button=\"left\") -> Focused 'Order ID' input field." },
+        { type: "tool", text: "[00:00.440] CALL computer_use.keyboard_type(text=\"ORD-2026-100889\") -> Value populated." },
+        { type: "tool", text: "[00:00.560] CALL computer_use.mouse_click(x=880, y=520, button=\"left\") -> Clicked 'Dispatch & Save'." },
+        { type: "success", text: "[00:00.680] ✓ SUCCESS: Legacy UI state transition confirmed via visual assertion delta." }
+      ],
+      incident: [
+        { type: "sys", text: "[00:00.010] Trigger: PagerDuty Alert 'API p99 Latency > 1200ms' ingested." },
+        { type: "thought", text: "[00:00.080] [Claude 3.5 Sonnet]: Formulating diagnostic hypothesis. Inspecting recent deployment tags vs ClickHouse error logs." },
+        { type: "tool", text: "[00:00.220] CALL mcp_clickhouse.query(sql=\"SELECT service, avg(latency_ms), count() FROM telemetry.http_spans WHERE timestamp > now() - INTERVAL 15 MINUTE GROUP BY service ORDER BY 2 DESC LIMIT 5\")" },
+        { type: "thought", text: "[00:00.360] [Claude]: Bottleneck identified in 'auth-service' token cache invalidation loop." },
+        { type: "tool", text: "[00:00.480] CALL mcp_github.compare_commits(base=\"v2.4.1\", head=\"v2.4.2\") -> Found commit 'refactor: token cache TTL'." },
+        { type: "guard", text: "[00:00.610] Guardrail Check: Auto-rollback recommended. Generating PR #148 with fix and notifying on-call lead." },
+        { type: "success", text: "[00:00.720] ✓ SUCCESS: PR #148 staged. Rollback checklist verified by on-call engineer." }
+      ]
+    };
+
+    function runScenario(key) {
+      document.querySelectorAll('.scenario-btn').forEach(btn => {
+        btn.classList.remove('border-brand-500/50', 'bg-brand-500/10', 'text-white');
+        btn.classList.add('border-white/10', 'bg-surface-900/60', 'text-slate-300');
+      });
+      const activeBtn = document.getElementById('btn-' + key);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-white/10', 'bg-surface-900/60', 'text-slate-300');
+        activeBtn.classList.add('border-brand-500/50', 'bg-brand-500/10', 'text-white');
+      }
+
+      const stream = document.getElementById('console-stream');
+      stream.innerHTML = '';
+      const items = scenarios[key];
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          const div = document.createElement('div');
+          if (item.type === 'thought') {
+            div.className = 'text-brand-500 bg-brand-500/10 p-2 rounded border border-brand-500/20';
+          } else if (item.type === 'tool') {
+            div.className = 'text-cyan-400 bg-cyan-950/30 p-2 rounded border border-cyan-800/30';
+          } else if (item.type === 'guard') {
+            div.className = 'text-amber-400 bg-amber-950/30 p-2 rounded border border-amber-800/30';
+          } else if (item.type === 'success') {
+            div.className = 'text-emerald-400 font-bold bg-emerald-950/30 p-2 rounded border border-emerald-800/30';
+          } else {
+            div.className = 'text-slate-400';
+          }
+          div.textContent = item.text;
+          stream.appendChild(div);
+          stream.scrollTop = stream.scrollHeight;
+        }, index * 260);
+      });
+    }
+
+    function resetConsole() {
+      document.getElementById('console-stream').innerHTML = '<div class="text-slate-500">// System ready. Click any scenario on the left.</div>';
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      document.getElementById('form-feedback').classList.remove('hidden');
+      e.target.reset();
+    }
+
+    // Auto-run first scenario on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      runScenario('invoice');
+    });
+  </script>
+</body>
+</html>
