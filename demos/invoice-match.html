@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice &amp; PO Matching Demo | DXC Group Inc</title>
+  <meta name="description" content="Interactive demo: match supplier invoices to purchase orders, apply an amount tolerance and surface only the exceptions. Runs entirely in your browser.">
+  <link rel="canonical" href="https://dxcgroupinc.com/demos/invoice-match.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/demo.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="/">DXC Group <small>INC</small></a>
+  <nav class="nav" aria-label="Main"><a href="/#services">Services</a><a href="/#cases">Demos</a><a class="btn sm" href="/#contact">Book a call</a></nav>
+</div></header>
+
+<main>
+<section class="case-hero"><div class="wrap">
+  <p class="crumb"><a href="/">Home</a> / <a href="/#cases">Demos</a> / Invoice matching</p>
+  <h1>Invoice &amp; PO matching</h1>
+  <p class="lede">Paste purchase orders and supplier invoices. The tool matches them by PO number, checks amounts against a tolerance and lists only what needs a person.</p>
+  <p class="notice" style="margin-top:24px">Demo with sample data. It runs entirely in your browser and nothing is uploaded. Production versions read PDFs and email, connect to your ERP and keep an audit log.</p>
+</div></section>
+
+<section style="padding-top:24px"><div class="wrap">
+  <div class="compare">
+    <label>Purchase orders (CSV: po, supplier, amount)
+      <textarea id="pos" class="mono" rows="9">PO-1001,Northwind Supply,1250.00
+PO-1002,Harbor Packaging,830.50
+PO-1003,Alder Logistics,4120.00
+PO-1004,Northwind Supply,299.99
+PO-1005,Summit Print,76.40</textarea>
+    </label>
+    <label>Invoices (CSV: invoice, po, supplier, amount)
+      <textarea id="inv" class="mono" rows="9">INV-77,PO-1001,Northwind Supply,1250.00
+INV-78,PO-1002,Harbor Packaging,845.00
+INV-79,PO-1003,Alder Logistics,4120.00
+INV-80,PO-1009,Summit Print,76.40
+INV-81,PO-1004,Northwind Trading,299.99
+INV-82,PO-1003,Alder Logistics,4120.00</textarea>
+    </label>
+  </div>
+  <div class="actions" style="align-items:end">
+    <label style="width:200px">Amount tolerance (%)<input id="tol" type="number" min="0" step="0.1" value="1"></label>
+    <button class="btn" id="run" type="button">Run matching</button>
+    <button class="btn ghost" id="reset" type="button">Reset sample</button>
+  </div>
+  <div id="summary" class="summary" aria-live="polite"></div>
+  <div class="table-wrap"><table id="out"><thead><tr><th>Invoice</th><th>PO</th><th>Status</th><th>Reason</th></tr></thead><tbody></tbody></table></div>
+</div></section>
+
+<section class="tint"><div class="wrap prose">
+  <h2>How it works</h2>
+  <ul>
+    <li><strong>Exact PO lookup.</strong> Each invoice is joined to the order it names.</li>
+    <li><strong>Checks.</strong> Unknown PO, supplier mismatch, amount outside tolerance and duplicate invoices against the same PO.</li>
+    <li><strong>Exceptions only.</strong> Clean matches are posted automatically; everything else is routed to a reviewer with the reason attached.</li>
+  </ul>
+  <p>Want this on your own invoices? <a href="/#contact">Book a discovery call</a>.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p class="legal" style="padding-top:0">© 2026 DXC Group Inc., a California corporation. Demonstration only; not a description of client work. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:sales@dxcgroupinc.com">sales@dxcgroupinc.com</a></p>
+</div></footer>
+
+<script>
+(function () {
+  var SAMPLE = {
+    pos: document.getElementById('pos').value,
+    inv: document.getElementById('inv').value
+  };
+  var parse = function (t) {
+    return t.split('\n').map(function (l) { return l.trim(); }).filter(Boolean)
+      .map(function (l) { return l.split(',').map(function (c) { return c.trim(); }); });
+  };
+  var money = function (n) { return n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); };
+
+  function run() {
+    var tol = parseFloat(document.getElementById('tol').value) || 0;
+    var pos = {};
+    parse(document.getElementById('pos').value).forEach(function (r) {
+      pos[r[0]] = { supplier: r[1], amount: parseFloat(r[2]) };
+    });
+    var seen = {}, rows = [], ok = 0;
+    parse(document.getElementById('inv').value).forEach(function (r) {
+      var id = r[0], po = r[1], sup = r[2], amt = parseFloat(r[3]), reason = '', status = 'Matched';
+      var p = pos[po];
+      if (!p) { status = 'Review'; reason = 'PO ' + po + ' not found'; }
+      else if (p.supplier.toLowerCase() !== sup.toLowerCase()) { status = 'Review'; reason = 'Supplier differs: ' + p.supplier + ' vs ' + sup; }
+      else if (seen[po]) { status = 'Review'; reason = 'Duplicate of ' + seen[po]; }
+      else {
+        var diff = Math.abs(amt - p.amount) / p.amount * 100;
+        if (diff > tol) { status = 'Review'; reason = 'Amount ' + money(amt) + ' vs PO ' + money(p.amount) + ' (' + diff.toFixed(1) + '% off)'; }
+        else { reason = diff === 0 ? 'Exact match' : 'Within tolerance (' + diff.toFixed(2) + '%)'; }
+      }
+      if (status === 'Matched') { ok++; seen[po] = id; }
+      rows.push({ id: id, po: po, status: status, reason: reason });
+    });
+    var tb = document.querySelector('#out tbody');
+    tb.textContent = '';
+    rows.forEach(function (x) {
+      var tr = document.createElement('tr');
+      [x.id, x.po].forEach(function (v) { var td = document.createElement('td'); td.textContent = v; tr.appendChild(td); });
+      var s = document.createElement('td'), t = document.createElement('span');
+      t.className = 'tag ' + (x.status === 'Matched' ? 'auto' : 'human');
+      t.textContent = x.status; s.appendChild(t); tr.appendChild(s);
+      var rs = document.createElement('td'); rs.textContent = x.reason; tr.appendChild(rs);
+      tb.appendChild(tr);
+    });
+    document.getElementById('summary').textContent =
+      rows.length + ' invoices · ' + ok + ' matched automatically · ' + (rows.length - ok) + ' need review';
+  }
+  document.getElementById('run').addEventListener('click', run);
+  document.getElementById('reset').addEventListener('click', function () {
+    document.getElementById('pos').value = SAMPLE.pos;
+    document.getElementById('inv').value = SAMPLE.inv;
+    run();
+  });
+  run();
+})();
+</script>
+</body>
+</html>

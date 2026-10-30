@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Ticket Triage Demo | DXC Group Inc</title>
+  <meta name="description" content="Interactive demo: sort e-commerce support tickets by category and priority and draft a first reply. Runs entirely in your browser.">
+  <link rel="canonical" href="https://dxcgroupinc.com/demos/ticket-triage.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/demo.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="/">DXC Group <small>INC</small></a>
+  <nav class="nav" aria-label="Main"><a href="/#services">Services</a><a href="/#cases">Demos</a><a class="btn sm" href="/#contact">Book a call</a></nav>
+</div></header>
+
+<main>
+<section class="case-hero"><div class="wrap">
+  <p class="crumb"><a href="/">Home</a> / <a href="/#cases">Demos</a> / Ticket triage</p>
+  <h1>E-commerce ticket triage</h1>
+  <p class="lede">Paste one customer message per line. The tool assigns a category and priority and drafts a first reply for an agent to approve.</p>
+  <p class="notice" style="margin-top:24px">Demo with sample data and simple keyword rules, so you can see the shape of the workflow. It runs entirely in your browser and nothing is uploaded. Production versions combine rules with a language model, your policies and agent approval.</p>
+</div></section>
+
+<section style="padding-top:24px"><div class="wrap">
+  <label>Customer messages (one per line)
+    <textarea id="tickets" class="mono" rows="9">Where is my order #48213? It was supposed to arrive Monday.
+I want a refund, the lamp arrived broken.
+Can I change the shipping address on order #48230 before it ships?
+You charged me twice for the same order, this is unacceptable!
+Do you have this jacket in size L?
+How do I return an item I bought last week?</textarea>
+  </label>
+  <div class="actions"><button class="btn" id="run" type="button">Triage tickets</button></div>
+  <div id="summary" class="summary" aria-live="polite"></div>
+  <div class="table-wrap"><table id="out"><thead><tr><th>Message</th><th>Category</th><th>Priority</th><th>Draft reply</th></tr></thead><tbody></tbody></table></div>
+</div></section>
+
+<section class="tint"><div class="wrap prose">
+  <h2>How it works</h2>
+  <ul>
+    <li><strong>Classify.</strong> Each message is mapped to a category such as shipping, refund, billing or product question.</li>
+    <li><strong>Prioritize.</strong> Billing errors, damaged goods and angry language are raised so they are seen first.</li>
+    <li><strong>Draft, then approve.</strong> The reply is a draft. An agent edits and sends it; nothing goes out automatically.</li>
+  </ul>
+  <p>Want this on your own help desk? <a href="/#contact">Book a discovery call</a>.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p class="legal" style="padding-top:0">© 2026 DXC Group Inc., a California corporation. Demonstration only; not a description of client work. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:sales@dxcgroupinc.com">sales@dxcgroupinc.com</a></p>
+</div></footer>
+
+<script>
+(function () {
+  var RULES = [
+    { cat: 'Billing', re: /charged|double|twice|billing|invoice|payment/i, base: 2,
+      reply: 'Thanks for flagging this. We are checking the charges on your order and will confirm any correction within one business day.' },
+    { cat: 'Refund / damage', re: /refund|broken|damaged|defect|not working/i, base: 2,
+      reply: 'Sorry the item did not arrive in good condition. Please reply with a photo and we will arrange a replacement or refund.' },
+    { cat: 'Return', re: /return|exchange/i, base: 1,
+      reply: 'You can start a return from your order page. If you tell us the order number, we will send the label.' },
+    { cat: 'Shipping status', re: /where is|tracking|arrive|delivery|shipped|late/i, base: 1,
+      reply: 'Thanks for your patience. Let us look up the latest carrier update for your order and get back to you shortly.' },
+    { cat: 'Order change', re: /change|address|cancel/i, base: 1,
+      reply: 'We can update the order if it has not shipped yet. Please confirm the new details and we will check right away.' },
+    { cat: 'Product question', re: /size|stock|available|color|colour|do you have/i, base: 0,
+      reply: 'Thanks for asking. We will check availability and reply with the options.' }
+  ];
+  var URGENT = /unacceptable|angry|terrible|worst|immediately|asap|!!/i;
+  var LABEL = ['Low', 'Normal', 'High'];
+
+  function run() {
+    var lines = document.getElementById('tickets').value.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+    var tb = document.querySelector('#out tbody'), high = 0;
+    tb.textContent = '';
+    lines.forEach(function (msg) {
+      var hit = null;
+      for (var i = 0; i < RULES.length && !hit; i++) { if (RULES[i].re.test(msg)) hit = RULES[i]; }
+      var level = hit ? hit.base : 1;
+      if (URGENT.test(msg)) level = 2;
+      if (level === 2) high++;
+      var tr = document.createElement('tr');
+      var cells = [msg, hit ? hit.cat : 'Needs human triage'];
+      cells.forEach(function (v) { var td = document.createElement('td'); td.textContent = v; tr.appendChild(td); });
+      var pt = document.createElement('td'), tag = document.createElement('span');
+      tag.className = 'tag ' + (level === 2 ? 'human' : 'auto'); tag.textContent = LABEL[level];
+      pt.appendChild(tag); tr.appendChild(pt);
+      var rd = document.createElement('td'); rd.textContent = hit ? hit.reply : 'No rule matched. Routed to an agent without a draft.';
+      tr.appendChild(rd); tb.appendChild(tr);
+    });
+    document.getElementById('summary').textContent = lines.length + ' tickets · ' + high + ' high priority';
+  }
+  document.getElementById('run').addEventListener('click', run);
+  run();
+})();
+</script>
+</body>
+</html>

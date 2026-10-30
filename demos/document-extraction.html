@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contract Information Extraction Demo | DXC Group Inc</title>
+  <meta name="description" content="Interactive demo: pull parties, dates, amounts and key clauses out of contract text into structured fields. Runs entirely in your browser.">
+  <link rel="canonical" href="https://dxcgroupinc.com/demos/document-extraction.html">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/demo.css">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="/">DXC Group <small>INC</small></a>
+  <nav class="nav" aria-label="Main"><a href="/#services">Services</a><a href="/#cases">Demos</a><a class="btn sm" href="/#contact">Book a call</a></nav>
+</div></header>
+
+<main>
+<section class="case-hero"><div class="wrap">
+  <p class="crumb"><a href="/">Home</a> / <a href="/#cases">Demos</a> / Document extraction</p>
+  <h1>Contract information extraction</h1>
+  <p class="lede">Paste contract text. The tool pulls out the parties, key dates, amounts and clauses into a structured record, and marks anything it could not find.</p>
+  <p class="notice" style="margin-top:24px">Demo with a made-up sample agreement and pattern rules. It runs entirely in your browser and nothing is uploaded. Production versions read scanned PDFs, use a language model for varied wording and send low-confidence fields to a reviewer.</p>
+</div></section>
+
+<section style="padding-top:24px"><div class="wrap">
+  <label>Contract text
+    <textarea id="doc" class="mono" rows="11">SERVICES AGREEMENT
+
+This Services Agreement is entered into as of March 3, 2025 (the "Effective Date") between Alder Works LLC ("Client") and Cedar Analytics Inc. ("Provider").
+
+1. Term. This Agreement begins on the Effective Date and continues for twelve (12) months, renewing automatically unless either party gives sixty (60) days written notice.
+
+2. Fees. Client shall pay Provider $4,800.00 per month, invoiced monthly and due within thirty (30) days of receipt.
+
+3. Governing Law. This Agreement is governed by the laws of the State of California.</textarea>
+  </label>
+  <div class="actions"><button class="btn" id="run" type="button">Extract fields</button></div>
+  <div id="summary" class="summary" aria-live="polite"></div>
+  <div class="table-wrap"><table id="out"><thead><tr><th>Field</th><th>Value</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+</div></section>
+
+<section class="tint"><div class="wrap prose">
+  <h2>How it works</h2>
+  <ul>
+    <li><strong>Extract.</strong> Parties, dates, amounts, term, notice period and governing law become named fields.</li>
+    <li><strong>Flag gaps.</strong> Missing fields are shown as missing, never guessed.</li>
+    <li><strong>Output.</strong> Records can go to a spreadsheet, database or your contract system, with a link back to the source text.</li>
+  </ul>
+  <p>Want this on your own documents? <a href="/#contact">Book a discovery call</a>.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p class="legal" style="padding-top:0">© 2026 DXC Group Inc., a California corporation. Demonstration only; not a description of client work. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:sales@dxcgroupinc.com">sales@dxcgroupinc.com</a></p>
+</div></footer>
+
+<script>
+(function () {
+  var MONTH = '(?:January|February|March|April|May|June|July|August|September|October|November|December)';
+  var FIELDS = [
+    ['Effective date', new RegExp('as of (' + MONTH + ' \\d{1,2}, \\d{4})', 'i')],
+    ['Party A', /between ([A-Z][\w&.,' -]+?) \(/],
+    ['Party B', /\) and ([A-Z][\w&.,' -]+?) \(/],
+    ['Term', /continues for ([^,.]+?)(?:,|\.)/i],
+    ['Renewal notice', /(?:gives?|giving) ([^.]*?) written notice/i],
+    ['Fee', /(\$[\d,]+(?:\.\d{2})?(?: per (?:month|year|hour))?)/i],
+    ['Payment terms', /due within ([^.]*?) of receipt/i],
+    ['Governing law', /laws of the (State of [A-Z][a-z]+(?: [A-Z][a-z]+)*)/]
+  ];
+  function run() {
+    var text = document.getElementById('doc').value, tb = document.querySelector('#out tbody'), found = 0;
+    tb.textContent = '';
+    FIELDS.forEach(function (f) {
+      var m = text.match(f[1]), tr = document.createElement('tr');
+      var a = document.createElement('td'); a.textContent = f[0];
+      var b = document.createElement('td'); b.textContent = m ? m[1].trim() : '—';
+      var c = document.createElement('td'), t = document.createElement('span');
+      t.className = 'tag ' + (m ? 'auto' : 'human'); t.textContent = m ? 'Found' : 'Missing, review';
+      if (m) found++;
+      c.appendChild(t); tr.appendChild(a); tr.appendChild(b); tr.appendChild(c); tb.appendChild(tr);
+    });
+    document.getElementById('summary').textContent = found + ' of ' + FIELDS.length + ' fields found';
+  }
+  document.getElementById('run').addEventListener('click', run);
+  run();
+})();
+</script>
+</body>
+</html>
