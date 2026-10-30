@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "DXC Group Inc. website - AI workflow automation and consulting",
   "scripts": {
-    "build": "echo 'Static assets ready in root' && exit 0",
-    "deploy": "cf pages deploy ."
+    "build": "python3 tools/build.py",
+    "preview": "python3 -m http.server 4312 --directory site",
+    "deploy": "wrangler pages deploy site --project-name=dxcgroupinc"
   },
   "keywords": [
     "ai-consulting",

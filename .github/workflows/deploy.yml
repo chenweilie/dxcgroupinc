@@ -22,4 +22,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 8410dbc88b2cf8dd068a0fedf0a9845e
-          command: pages deploy . --project-name=dxcgroupinc --branch=main
+          command: pages deploy site --project-name=dxcgroupinc --branch=main
